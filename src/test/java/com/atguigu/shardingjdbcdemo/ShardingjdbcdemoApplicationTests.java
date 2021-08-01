@@ -21,10 +21,11 @@ class ShardingjdbcdemoApplicationTests {
     //添加课程的方法
     @Test
     void addCourse() {
-        for (int i = 1; i <= 10; i++) {
+        for (int i = 1; i <= 20; i++) {
             Course course = new Course();
+            course.setCid(i+10000000L);
             course.setCname("java" + i);
-            course.setUserId(100L);
+            course.setUserId(100L+i+1);
             course.setStatus("Normal" + i);
             courseMapper.insert(course);
         }
@@ -34,7 +35,8 @@ class ShardingjdbcdemoApplicationTests {
     @Test
     public void findCourse() {
         QueryWrapper<Course> wrapper = new QueryWrapper<>();
-        wrapper.eq("cid", 465114665106538497L);
+        wrapper.eq("cid", 10000010L);
+        wrapper.eq("user_id", 110);
         Course course = courseMapper.selectOne(wrapper);
         System.out.println(course);
     }
