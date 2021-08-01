@@ -1,7 +1,9 @@
 package com.atguigu.shardingjdbcdemo;
 
 import com.atguigu.shardingjdbcdemo.entity.Course;
+import com.atguigu.shardingjdbcdemo.entity.User;
 import com.atguigu.shardingjdbcdemo.mapper.CourseMapper;
+import com.atguigu.shardingjdbcdemo.mapper.UserMapper;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import org.junit.jupiter.api.Test;
 import org.junit.runner.RunWith;
@@ -17,6 +19,8 @@ class ShardingjdbcdemoApplicationTests {
     //注入 mapper
     @Resource
     private CourseMapper courseMapper;
+    @Resource
+    private UserMapper userMapper;
 
     //添加课程的方法
     @Test
@@ -39,6 +43,18 @@ class ShardingjdbcdemoApplicationTests {
         wrapper.eq("user_id", 110);
         Course course = courseMapper.selectOne(wrapper);
         System.out.println(course);
+    }
+
+
+    //添加课程的方法
+    @Test
+    void addUser() {
+        for (int i = 1; i <= 20; i++) {
+           User user=new User();
+           user.setUserName("xixi"+i);
+           user.setUStatus("1");
+            userMapper.insert(user);
+        }
     }
 }
 
